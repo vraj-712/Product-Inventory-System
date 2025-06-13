@@ -47,11 +47,11 @@ const Listing = () => {
           categories: selectedCategories,
         },
       })
-      if (response.status === 200) {
+      if (response?.status === 200) {
         toast.success("Products fetched Successfully.")
-        setProducts(response.data.products)
-        setTotalProducts(response.data.totalProducts)
-        setTotalPages(Math.ceil(response.data.totalProducts / limit))
+        setProducts(response?.data?.products)
+        setTotalProducts(response?.data?.totalProducts)
+        setTotalPages(Math.ceil(response?.data?.totalProducts / limit))
       } else {
         toast.success("Error while Fetching Product.")
       }
@@ -62,10 +62,10 @@ const Listing = () => {
   useEffect(() => {
      const fetchAllCategories = async () => {
       const response = await axiosInstance.get('/categories/get-categories');
-      if (response.status === 200) {
-        setAllCategories(response.data)
+      if (response?.status === 200) {
+        setAllCategories(response?.data)
       } else {
-        console.error("Failed to fetch categories:", response.serverDefaultText)
+        console.error("Failed to fetch categories:", response?.serverDefaultText)
       }
     }
     fetchAllCategories()  
@@ -80,11 +80,11 @@ const Listing = () => {
   // Handle product deletion
   const handleDelete = async (id) => {
     const response = await axiosInstance.delete(`/products/delete-product/${id}`);
-    if(response.status == 200) {
-      toast.success(response.message);
+    if(response?.status == 200) {
+      toast.success(response?.message);
       setRefresh(prev => !prev)
     } else {
-      toast.error(response.message)
+      toast.error(response?.message)
     }
   }
 

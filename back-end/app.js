@@ -6,7 +6,7 @@ const app = express();
 
 app.use(express.json());
 app.use(cors({
-    origin: 'http://localhost:5173', // Ensure no trailing slash
+    origin: ['http://localhost:5173', 'https://product-inventory-system-one.vercel.app'], // Ensure no trailing slash
     credentials: true
 }));
   

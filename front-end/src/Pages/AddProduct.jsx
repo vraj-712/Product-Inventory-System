@@ -52,7 +52,7 @@ const AddProduct = () => {
     if (isFormValid()) {
       console.log("Form submitted:", formData)
       const response = await axiosInstance.post('/products/add-product', formData)
-      if(response.status == 201){
+      if(response?.status == 201){
         toast.success("Product added successfully!")
         setFormData({
           name: "",
@@ -62,7 +62,7 @@ const AddProduct = () => {
           category: [],
         })
       } else {
-        toast.error("Failed to add product: " + response.message)
+        toast.error("Failed to add product: " + response?.message)
       }
     } else {
       toast.error("Error while submitting the form. Please try again later.")
@@ -86,14 +86,13 @@ const AddProduct = () => {
   useEffect(() => {
     const loadCategoryData = async () => {
       const response = await axiosInstance.get('/categories/get-categories');
-      console.log(response)
-      if (response.status === 200) {
-        const modifiedCategories = response.data.map((cat) => ({
+      if (response?.status === 200) {
+        const modifiedCategories = response?.data?.map((cat) => ({
           value: cat._id,
           label: cat.name}))
         setCategories(modifiedCategories || [])
       } else {
-        console.error("Failed to fetch categories:", response.message)
+        console.error("Failed to fetch categories:", response?.message)
       }
     }
     loadCategoryData()
