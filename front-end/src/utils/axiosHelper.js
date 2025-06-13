@@ -1,8 +1,7 @@
 import axios from "axios";
 
 const axiosInstance = axios.create({
-    // baseURL: "http://localhost:5000/api", // Local
-    baseURL: "https://product-inventory-system-9ksh.onrender.com/api", // Production
+    baseURL: "http://localhost:5000/api", // Local
 });
 
 axiosInstance.interceptors.response.use(

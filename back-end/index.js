@@ -5,9 +5,7 @@ dotenv.config({
     path: './.env'
 });
 
-connectionToDB()
-.then(() => console.log('Connected to the database'))
-.catch((error) => console.error('Failed to connect to the database:', error));
+connectionToDB(process.env.DB_URL)
 
 const port = process.env.PORT || 8080;
 app.listen(port, () => console.log(`Listening on port ${port}`));
